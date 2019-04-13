@@ -11,7 +11,7 @@ import Fluent
 struct EventsController: RouteCollection {
     
     func boot(router: Router) throws {
-        let routes = router.grouped("api", "events")
+        let routes = router.grouped("events")
         routes.get(use: events)
         routes.post(Event.self, use: createEvent)
     }

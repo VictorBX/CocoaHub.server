@@ -21,8 +21,10 @@ struct Tags {
         
         switch type {
         case .event:
-            filteredTags = tags.filter(Tags.isEventTag)
-        default:
+            filteredTags = tags.filter(isEventTag)
+        case .new:
+            filteredTags = tags.filter(isNewTag)
+        case .article:
             filteredTags = []
         }
         
@@ -38,6 +40,19 @@ private extension Tags {
     }
     
     static func isEventTag(_ tag: String) -> Bool {
-        return tag == Tags.Event.callForPapers || tag == Tags.Event.tickets
+        return tag == Event.callForPapers || tag == Event.tickets
+    }
+}
+
+private extension Tags {
+    
+    enum New {
+        static let apple = "apple"
+        static let evolution = "evolution"
+        static let community = "community"
+    }
+    
+    static func isNewTag(_ tag: String) -> Bool {
+        return tag == New.apple || tag == New.community || tag == New.apple
     }
 }
