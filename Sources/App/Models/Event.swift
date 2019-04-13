@@ -6,9 +6,9 @@
 //
 
 import Vapor
-import FluentPostgreSQL
+import FluentMySQL
 
-final class Event: PostgreSQLModel {
+final class Event: MySQLModel {
     var id: Int?
     let name: String
     let logo: String

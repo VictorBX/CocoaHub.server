@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/vapor/core.git",
         "state": {
           "branch": null,
-          "revision": "727ae2905ebdca162c5da5bfe187c406555859e2",
-          "version": "3.7.3"
+          "revision": "57368d4092f92df3131e5968c8ed24a3c7361ec0",
+          "version": "3.8.1"
         }
       },
       {
@@ -47,12 +47,12 @@
         }
       },
       {
-        "package": "FluentPostgreSQL",
-        "repositoryURL": "https://github.com/vapor/fluent-postgresql.git",
+        "package": "FluentMySQL",
+        "repositoryURL": "https://github.com/vapor/fluent-mysql.git",
         "state": {
           "branch": null,
-          "revision": "8e3eb9d24d54ac58c8d04c194ad6b24f0b1b667e",
-          "version": "1.0.0"
+          "revision": "2e2f6ea6a97d0b352cf55e6ec289dc1276a6b31a",
+          "version": "3.0.1"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/vapor/http.git",
         "state": {
           "branch": null,
-          "revision": "8da7d475a1a060714766d9ad4b24eb0dae243aab",
-          "version": "3.1.11"
+          "revision": "254a0a0cbf22a02b697a075a0d2ddbb448bb7c87",
+          "version": "3.2.0"
         }
       },
       {
@@ -69,17 +69,17 @@
         "repositoryURL": "https://github.com/vapor/multipart.git",
         "state": {
           "branch": null,
-          "revision": "bd7736c5f28e48ed8b683dcc9df3dcd346064c2b",
-          "version": "3.0.3"
+          "revision": "f919a01c4d10a281d6236a21b0b1d1759a72b8eb",
+          "version": "3.0.4"
         }
       },
       {
-        "package": "PostgreSQL",
-        "repositoryURL": "https://github.com/vapor/postgresql.git",
+        "package": "MySQL",
+        "repositoryURL": "https://github.com/vapor/mysql.git",
         "state": {
           "branch": null,
-          "revision": "41cec2846f9cdd8233675da0d256efa3b8d62b21",
-          "version": "1.4.1"
+          "revision": "d1561ae722220cafe0ef4b51549f87aebc70ddb1",
+          "version": "3.2.4"
         }
       },
       {
@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "29a9f2aca71c8afb07e291336f1789337ce235dd",
-          "version": "1.13.2"
+          "revision": "ba7970fe396e8198b84c6c1b44b38a1d4e2eb6bd",
+          "version": "1.14.1"
         }
       },
       {
