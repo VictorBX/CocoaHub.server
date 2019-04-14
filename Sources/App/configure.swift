@@ -29,5 +29,10 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     // Configure migrations
     var migrations = MigrationConfig()
     migrations.add(model: Event.self, database: .mysql)
+    migrations.add(model: New.self, database: .mysql)
+    migrations.add(model: ArticlesEdition.self, database: .mysql)
+    migrations.add(model: Article.self, database: .mysql)
+    migrations.add(model: Contributor.self, database: .mysql)
+    migrations.add(model: ArticleContributorPivot.self, database: .mysql)
     services.register(migrations)
 }
