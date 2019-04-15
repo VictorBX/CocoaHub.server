@@ -10,11 +10,11 @@ import FluentMySQL
 
 final class New: MySQLModel {
     var id: Int?
-    let title: String
-    let description: String
-    let date: Date
-    let uri: String
-    let tags: [String]
+    var title: String
+    var description: String
+    var date: Date
+    var uri: String
+    var tags: [String]
     
     init(title: String, description: String, date: Date, uri: String, tags: [String]) {
         self.title = title
@@ -28,3 +28,19 @@ final class New: MySQLModel {
 extension New: Content {}
 
 extension New: Migration {}
+
+extension New: Parameter {}
+
+extension New {
+    
+    @discardableResult
+    func update(with new: New) -> New {
+        title = new.title
+        description = new.description
+        date = new.date
+        uri = new.uri
+        tags = new.tags
+        
+        return self
+    }
+}

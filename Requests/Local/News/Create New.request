@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://cocoahub.vapor.cloud/events</string>
+	<string>http://localhost:8080/news</string>
 	<key>followRedirect</key>
 	<true/>
 	<key>handleJSONPCallbacks</key>
@@ -11,7 +11,7 @@
 	<key>headers</key>
 	<array/>
 	<key>httpMethod</key>
-	<string>GET</string>
+	<string>POST</string>
 	<key>jsonpScript</key>
 	<string></string>
 	<key>paramBodyUIChoice</key>
@@ -20,43 +20,43 @@
 	<array>
 		<dict>
 			<key>inUse</key>
-			<false/>
+			<true/>
 			<key>parameter</key>
-			<string>name</string>
+			<string>title</string>
 			<key>value</key>
-			<string>Swift Aveiro</string>
+			<string>SE-0250: Swift Code Style Guidelines and Formatter</string>
 		</dict>
 		<dict>
 			<key>inUse</key>
-			<false/>
+			<true/>
 			<key>parameter</key>
-			<string>logo</string>
+			<string>description</string>
 			<key>value</key>
-			<string>https://firebasestorage.googleapis.com/v0/b/pedrommcarrasco-cocoahub.appspot.com/o/events%2Fswiftaveiro.jpg?alt=media&amp;token=77ee75b3-a4fe-433c-baab-ba6e4d356b46</string>
+			<string>After a successfull pitch, the Core Team decided to advance into a proposal review.\nLet them know your opinion!</string>
 		</dict>
 		<dict>
 			<key>inUse</key>
-			<false/>
+			<true/>
+			<key>parameter</key>
+			<string>uri</string>
+			<key>value</key>
+			<string>https://forums.swift.org/t/se-0250-swift-code-style-guidelines-and-formatter/21795</string>
+		</dict>
+		<dict>
+			<key>inUse</key>
+			<true/>
+			<key>parameter</key>
+			<string>date</string>
+			<key>value</key>
+			<string>2019-03-19T12:49:02+0000</string>
+		</dict>
+		<dict>
+			<key>inUse</key>
+			<true/>
 			<key>parameter</key>
 			<string>tags</string>
 			<key>value</key>
-			<string>["tickets"]</string>
-		</dict>
-		<dict>
-			<key>inUse</key>
-			<false/>
-			<key>parameter</key>
-			<string>startDate</string>
-			<key>value</key>
-			<string>2019-06-20T09:00:00+0000</string>
-		</dict>
-		<dict>
-			<key>inUse</key>
-			<false/>
-			<key>parameter</key>
-			<string>endDate</string>
-			<key>value</key>
-			<string>2019-06-21T18:00:00+0000</string>
+			<string>["evolution"]</string>
 		</dict>
 	</array>
 	<key>parametersType</key>
