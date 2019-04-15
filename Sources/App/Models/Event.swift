@@ -10,11 +10,11 @@ import FluentMySQL
 
 final class Event: MySQLModel {
     var id: Int?
-    let name: String
-    let logo: String
-    let tags: [String]
-    let startDate: Date
-    let endDate: Date
+    var name: String
+    var logo: String
+    var tags: [String]
+    var startDate: Date
+    var endDate: Date
     
     init(name: String, logo: String, tags: [String], startDate: Date, endDate: Date) {
         self.name = name
@@ -28,3 +28,19 @@ final class Event: MySQLModel {
 extension Event: Content {}
 
 extension Event: Migration {}
+
+extension Event: Parameter {}
+
+extension Event {
+    
+    @discardableResult
+    func update(with event: Event) -> Event {
+        name = event.name
+        logo = event.logo
+        tags = event.tags
+        startDate = event.startDate
+        endDate = event.endDate
+        
+        return self
+    }
+}
