@@ -7,12 +7,14 @@
 
 import Foundation
 
+// MARK: - TagType
 enum TagType {
     case event
     case new
     case article
 }
 
+// MARK: - Tags
 struct Tags {
     
     static func allowedTags(from tags: [String], of type: TagType) -> [String] {
@@ -32,6 +34,7 @@ struct Tags {
     }
 }
 
+// MARK: - Event Tags
 private extension Tags {
     
     enum Event {
@@ -44,6 +47,7 @@ private extension Tags {
     }
 }
 
+// MARK: - New Tags
 private extension Tags {
     
     enum New {
@@ -57,10 +61,12 @@ private extension Tags {
     }
 }
 
+// MARK: - Article Tags
 private extension Tags {
     
     enum Article {
         static let architecture = "architecture"
+        static let serverSide = "serverSide"
         static let business = "business"
         static let career = "career"
         static let dx = "dx"
@@ -76,6 +82,7 @@ private extension Tags {
     
     static func isArticleTag(_ tag: String) -> Bool {
         return tag == Article.architecture
+            || tag == Article.serverSide
             || tag == Article.business
             || tag == Article.career
             || tag == Article.dx

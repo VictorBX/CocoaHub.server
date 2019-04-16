@@ -8,18 +8,27 @@
 import Vapor
 import FluentMySQL
 
-final class Contributor: MySQLModel {
+// MARK: - Contributor
+final class Contributor {
+    
+    // MARK: Properties
     var id: Int?
     let name: String
     let uri: String
     
+    // MARK: Init
     init(name: String, uri: String) {
         self.name = name
         self.uri = uri
     }
 }
 
+// MARK: - MySQLModel
+extension Contributor: MySQLModel {}
+
+// MARK: - Content
 extension Contributor: Content {}
 
+// MARK: - Migration
 extension Contributor: Migration {}
 

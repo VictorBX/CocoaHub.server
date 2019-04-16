@@ -8,7 +8,10 @@
 import Vapor
 import FluentMySQL
 
-final class Event: MySQLModel {
+// MARK: - Event
+final class Event {
+    
+    // MARK: Properties
     var id: Int?
     var name: String
     var logo: String
@@ -16,6 +19,7 @@ final class Event: MySQLModel {
     var startDate: Date
     var endDate: Date
     
+    // MARK: Init
     init(name: String, logo: String, tags: [String], startDate: Date, endDate: Date) {
         self.name = name
         self.logo = logo
@@ -25,12 +29,19 @@ final class Event: MySQLModel {
     }
 }
 
+// MARK: - MySQLModel
+extension Event: MySQLModel {}
+
+// MARK: - Content
 extension Event: Content {}
 
+// MARK: - Migration
 extension Event: Migration {}
 
+// MARK: - Parameter
 extension Event: Parameter {}
 
+// MARK: - Update
 extension Event {
     
     @discardableResult

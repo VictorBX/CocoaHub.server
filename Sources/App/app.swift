@@ -1,5 +1,6 @@
 import Vapor
 
+// MARK: - Main
 public func app(_ env: Environment) throws -> Application {
     var config = Config.default()
     var env = env

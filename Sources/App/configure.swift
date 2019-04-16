@@ -1,6 +1,7 @@
 import FluentMySQL
 import Vapor
 
+// MARK: - Configure
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
     // Register providers
     try services.register(FluentMySQLProvider())

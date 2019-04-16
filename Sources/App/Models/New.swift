@@ -8,7 +8,10 @@
 import Vapor
 import FluentMySQL
 
-final class New: MySQLModel {
+// MARK: - New
+final class New {
+    
+    // MARK: Properties
     var id: Int?
     var title: String
     var description: String
@@ -16,6 +19,7 @@ final class New: MySQLModel {
     var uri: String
     var tags: [String]
     
+    // MARK: Init
     init(title: String, description: String, date: Date, uri: String, tags: [String]) {
         self.title = title
         self.description = description
@@ -25,12 +29,19 @@ final class New: MySQLModel {
     }
 }
 
+// MARK: - MySQLModel
+extension New: MySQLModel {}
+
+// MARK: - Content
 extension New: Content {}
 
+// MARK: - Migration
 extension New: Migration {}
 
+// MARK: - Parameter
 extension New: Parameter {}
 
+// MARK: - Update
 extension New {
     
     @discardableResult
