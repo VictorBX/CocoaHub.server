@@ -26,7 +26,7 @@ extension NewsController {
     
     func news(_ req: Request) throws -> Future<[New]> {
         return New.query(on: req)
-            .sort(\.date)
+            .sort(\.date, .descending)
             .all()
     }
 }

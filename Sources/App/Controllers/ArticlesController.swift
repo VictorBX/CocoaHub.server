@@ -13,15 +13,17 @@ struct ArticlesController: RouteCollection {
     
     // MARK: Boot
     func boot(router: Router) throws {
-        let routes = router.grouped("articlesEditions")
-        routes.get(use: editions)
-        routes.get(ArticlesEdition.parameter, "articles", use: articles)
-        routes.post(ArticlesEdition.self, use: createEdition)
-        routes.post(Article.self, use: createArticle)
-        routes.put(ArticlesEdition.parameter, use: updateEdition)
-        routes.put(Article.parameter, use: updateArticle)
-        routes.delete(ArticlesEdition.parameter, use: deleteEdition)
-        routes.delete(Article.parameter, use: deleteArticle)
+        let editionsRoutes = router.grouped("articlesEditions")
+        editionsRoutes.get(use: editions)
+        editionsRoutes.get(ArticlesEdition.parameter, "articles", use: articles)
+        editionsRoutes.post(ArticlesEdition.self, use: createEdition)
+        editionsRoutes.put(ArticlesEdition.parameter, use: updateEdition)
+        editionsRoutes.delete(ArticlesEdition.parameter, use: deleteEdition)
+        
+        let articlesRoutes = router.grouped("articles")
+        articlesRoutes.post(Article.self, use: createArticle)
+        articlesRoutes.put(Article.parameter, use: updateArticle)
+        articlesRoutes.delete(Article.parameter, use: deleteArticle)
     }
 }
 
@@ -30,14 +32,18 @@ extension ArticlesController {
     
     func editions(_ req: Request) throws -> Future<[ArticlesEdition]> {
         return ArticlesEdition.query(on: req)
-            .sort(\.date)
+            .sort(\.date, .descending)
             .all()
     }
     
     func articles(_ req: Request) throws -> Future<[Article]> {
         return try req.parameters
             .next(ArticlesEdition.self)
-            .flatMap(to: [Article].self) { try $0.articles.query(on: req).all() }
+            .flatMap(to: [Article].self) {
+                try $0.articles.query(on: req)
+                    .sort(\.title)
+                    .all()
+        }
     }
 }
 

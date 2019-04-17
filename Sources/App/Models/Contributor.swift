@@ -12,7 +12,6 @@ import FluentMySQL
 final class Contributor {
     
     // MARK: Properties
-    var id: Int?
     let name: String
     let uri: String
     
@@ -23,12 +22,5 @@ final class Contributor {
     }
 }
 
-// MARK: - MySQLModel
-extension Contributor: MySQLModel {}
-
 // MARK: - Content
 extension Contributor: Content {}
-
-// MARK: - Migration
-extension Contributor: Migration {}
-

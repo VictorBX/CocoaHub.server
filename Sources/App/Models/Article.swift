@@ -15,18 +15,17 @@ final class Article {
     var id: Int?
     var title: String
     var tags: [String]
+    var author: Contributor
+    var curator: Contributor
     var edition: ArticlesEdition.ID
     
-    // MARK: Relational Properties
-    var author: Siblings<Article, Contributor, ArticleContributorPivot> {
-        return siblings()
-    }
-    
     // MARK: Init
-    init(title: String, tags: [String], edition: ArticlesEdition.ID) {
+    init(title: String, tags: [String], author: Contributor, curator: Contributor, edition: ArticlesEdition.ID) {
         self.title = title
         self.tags = Tags.allowedTags(from: tags, of: .article)
         self.edition = edition
+        self.author = author
+        self.curator = curator
     }
 }
 
@@ -58,6 +57,7 @@ extension Article {
         title = article.title
         tags = article.tags
         edition = article.edition
+        curator = article.curator
         
         return self
     }
