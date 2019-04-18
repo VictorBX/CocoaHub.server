@@ -32,6 +32,14 @@
 			<key>value</key>
 			<string>application/json</string>
 		</dict>
+		<dict>
+			<key>header</key>
+			<string>X-CocoaHub-Secret</string>
+			<key>inUse</key>
+			<true/>
+			<key>value</key>
+			<string>_SECRET_</string>
+		</dict>
 	</array>
 	<key>httpMethod</key>
 	<string>POST</string>

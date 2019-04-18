@@ -15,13 +15,14 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     // Register middleware
     services.register(LogMiddleware.self)
+    services.register(SecretMiddleware.self)
     
     // Configure a database
     var databases = DatabasesConfig()
-    let databaseConfig = MySQLDatabaseConfig(hostname: Environment.get("DATABASE_HOSTNAME") ?? "localhost",
-                                             username: Environment.get("DATABASE_USER") ?? "vapor",
-                                             password: Environment.get("DATABASE_PASSWORD") ?? "password",
-                                             database: Environment.get("DATABASE_DB") ?? "cocoahub")
+    let databaseConfig = MySQLDatabaseConfig(hostname: Environment.hostname,
+                                             username: Environment.user,
+                                             password: Environment.password,
+                                             database: Environment.database)
     
     let database = MySQLDatabase(config: databaseConfig)
     databases.add(database: database, as: .mysql)

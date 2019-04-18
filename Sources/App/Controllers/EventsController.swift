@@ -15,9 +15,12 @@ struct EventsController: RouteCollection {
     func boot(router: Router) throws {
         let routes = router.grouped("events")
         routes.get(use: events)
-        routes.post(Event.self, use: createEvent)
-        routes.put(Event.parameter, use: updateEvent)
-        routes.delete(Event.parameter, use: deleteEvent)
+        
+        routes.group(SecretMiddleware.self) {
+            $0.post(Event.self, use: createEvent)
+            $0.put(Event.parameter, use: updateEvent)
+            $0.delete(Event.parameter, use: deleteEvent)
+        }
     }
 }
 

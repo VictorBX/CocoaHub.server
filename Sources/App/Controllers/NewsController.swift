@@ -15,9 +15,12 @@ struct NewsController: RouteCollection {
     func boot(router: Router) throws {
         let routes = router.grouped("news")
         routes.get(use: news)
-        routes.post(New.self, use: createNew)
-        routes.put(New.parameter, use: updateNew)
-        routes.delete(New.parameter, use: deleteNew)
+        
+        routes.group(SecretMiddleware.self) {
+            $0.post(New.self, use: createNew)
+            $0.put(New.parameter, use: updateNew)
+            $0.delete(New.parameter, use: deleteNew)
+        }
     }
 }
 

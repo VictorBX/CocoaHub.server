@@ -7,12 +7,11 @@
 
 import Foundation
 
+// MARK: - Readable
 extension TimeInterval {
     
-    /// Converts the time internal to readable milliseconds format, i.e., "3.4ms"
     var readableMilliseconds: String {
         let string = (self * 1000).description
-        // include one decimal point after the zero
         guard let dotIndex = string.index(of: ".") else { return "" }
         let endIndex = string.index(dotIndex, offsetBy: 2)
         let trimmed = string[string.startIndex..<endIndex]
