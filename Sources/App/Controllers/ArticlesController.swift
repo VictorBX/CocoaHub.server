@@ -35,7 +35,9 @@ struct ArticlesController: RouteCollection {
 extension ArticlesController {
     
     func editions(_ req: Request) throws -> Future<[ArticlesEdition]> {
+        let today = Date()
         return ArticlesEdition.query(on: req)
+            .filter(\.date <= today)
             .sort(\.date, .descending)
             .all()
     }

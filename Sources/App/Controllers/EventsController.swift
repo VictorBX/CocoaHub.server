@@ -28,7 +28,9 @@ struct EventsController: RouteCollection {
 extension EventsController {
     
     func events(_ req: Request) throws -> Future<[Event]> {
+        let today = Date()
         return Event.query(on: req)
+            .filter(\.endDate >= today)
             .sort(\.startDate)
             .all()
     }

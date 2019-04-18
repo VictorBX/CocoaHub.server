@@ -52,7 +52,5 @@ extension SecretMiddleware: ServiceType {
         default:
             return SecretMiddleware(with: Constant.nonProductionSecret)
         }
-        
-        
     }
 }
