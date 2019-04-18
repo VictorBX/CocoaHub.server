@@ -7,14 +7,14 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     try services.register(FluentMySQLProvider())
     
     // Register routes to the router
-    let router = EngineRouter.default()
-    try routes(router)
-    services.register(router, as: Router.self)
+    services.register(Router.self) { c -> EngineRouter in
+        let router = EngineRouter.default()
+        try routes(router)
+        return router
+    }
     
     // Register middleware
-    var middlewares = MiddlewareConfig()
-    middlewares.use(ErrorMiddleware.self)
-    services.register(middlewares)
+    services.register(LogMiddleware.self)
     
     // Configure a database
     var databases = DatabasesConfig()
@@ -27,12 +27,22 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     databases.add(database: database, as: .mysql)
     services.register(databases)
     
+    /// Configure middleware
+    services.register { c -> MiddlewareConfig in
+        var middleware = MiddlewareConfig()
+        middleware.use(LogMiddleware.self)
+        middleware.use(ErrorMiddleware.self)
+        return middleware
+    }
+    
     // Configure migrations
     var migrations = MigrationConfig()
     migrations.add(model: Event.self, database: .mysql)
     migrations.add(model: New.self, database: .mysql)
     migrations.add(model: ArticlesEdition.self, database: .mysql)
     migrations.add(model: Article.self, database: .mysql)
-    migrations.add(model: Contributor.self, database: .mysql)
     services.register(migrations)
+    
+    // preferences
+    config.prefer(ConsoleLogger.self, for: Logger.self)
 }
