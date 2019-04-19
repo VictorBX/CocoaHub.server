@@ -7,6 +7,7 @@
 
 import Vapor
 import FluentMySQL
+import Pagination
 
 // MARK: - Event
 final class Event {
@@ -40,6 +41,9 @@ extension Event: Migration {}
 
 // MARK: - Parameter
 extension Event: Parameter {}
+
+// MARK: - Paginatable
+extension Event: Paginatable {}
 
 // MARK: - Update
 extension Event {

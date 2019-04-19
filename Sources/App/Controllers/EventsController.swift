@@ -7,6 +7,7 @@
 
 import Vapor
 import Fluent
+import Pagination
 
 // MARK: - EventsController
 struct EventsController: RouteCollection {
@@ -27,12 +28,12 @@ struct EventsController: RouteCollection {
 // MARK: - GET
 extension EventsController {
     
-    func events(_ req: Request) throws -> Future<[Event]> {
+    func events(_ req: Request) throws -> Future<Paginated<Event>> {
         let today = Date()
-        return Event.query(on: req)
+        return try Event.query(on: req)
             .filter(\.endDate >= today)
             .sort(\.startDate)
-            .all()
+            .paginate(for: req)
     }
 }
 
