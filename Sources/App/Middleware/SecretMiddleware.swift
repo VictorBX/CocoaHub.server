@@ -43,14 +43,14 @@ extension SecretMiddleware: ServiceType {
     
     static func makeService(for container: Container) throws -> SecretMiddleware {
         switch container.environment {
-        case .production:
+        case .development:
+           return SecretMiddleware(with: Constant.nonProductionSecret)
+            
+        default:
             guard let secret = Environment.secret else {
                 throw Abort(.internalServerError, reason: Constant.noSecretReason)
             }
             return SecretMiddleware(with: secret)
-            
-        default:
-            return SecretMiddleware(with: Constant.nonProductionSecret)
         }
     }
 }
