@@ -7,6 +7,7 @@
 
 import Vapor
 import Fluent
+import Pagination
 
 // MARK: - NewsController
 struct NewsController: RouteCollection {
@@ -27,10 +28,10 @@ struct NewsController: RouteCollection {
 // MARK: - GET
 extension NewsController {
     
-    func news(_ req: Request) throws -> Future<[New]> {
-        return New.query(on: req)
+    func news(_ req: Request) throws -> Future<Paginated<New>> {
+        return try New.query(on: req)
             .sort(\.date, .descending)
-            .all()
+            .paginate(for: req)
     }
 }
 

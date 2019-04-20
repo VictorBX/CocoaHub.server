@@ -7,6 +7,7 @@
 
 import Vapor
 import FluentMySQL
+import Pagination
 
 // MARK: - ArticlesEdition
 final class ArticlesEdition {
@@ -41,6 +42,9 @@ extension ArticlesEdition: Migration {}
 
 // MARK: - Parameter
 extension ArticlesEdition: Parameter {}
+
+// MARK: - Paginatable
+extension ArticlesEdition: Paginatable {}
 
 // MARK: - Update
 extension ArticlesEdition {

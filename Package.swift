@@ -9,7 +9,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
         .package(url: "https://github.com/vapor/fluent-mysql.git", from: "3.0.1"),
-        .package(url: "https://github.com/vapor-community/pagination.git", from: "1.0.0")
+        .package(url: "https://github.com/vapor-community/pagination.git", from: "1.0.9")
     ],
     targets: [
         .target(name: "App", dependencies: ["FluentMySQL", "Vapor", "Pagination"]),

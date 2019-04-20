@@ -7,6 +7,7 @@
 
 import Vapor
 import Fluent
+import Pagination
 
 // MARK: - ArticlesController
 struct ArticlesController: RouteCollection {
@@ -34,12 +35,12 @@ struct ArticlesController: RouteCollection {
 // MARK: - GET
 extension ArticlesController {
     
-    func editions(_ req: Request) throws -> Future<[ArticlesEdition]> {
+    func editions(_ req: Request) throws -> Future<Paginated<ArticlesEdition>> {
         let today = Date()
-        return ArticlesEdition.query(on: req)
+        return try ArticlesEdition.query(on: req)
             .filter(\.date <= today)
             .sort(\.date, .descending)
-            .all()
+            .paginate(for: req)
     }
     
     func articles(_ req: Request) throws -> Future<[Article]> {

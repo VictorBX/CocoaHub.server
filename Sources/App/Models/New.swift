@@ -7,6 +7,7 @@
 
 import Vapor
 import FluentMySQL
+import Pagination
 
 // MARK: - New
 final class New {
@@ -42,6 +43,9 @@ extension New: Migration {}
 
 // MARK: - Parameter
 extension New: Parameter {}
+
+// MARK: - Paginatable
+extension New: Paginatable {}
 
 // MARK: - Update
 extension New {
