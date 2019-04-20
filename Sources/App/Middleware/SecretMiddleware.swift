@@ -12,7 +12,6 @@ final class SecretMiddleware {
     
     // MARK: Constant
     private enum Constant {
-        static let nonProductionSecret = "_SECRET_"
         static let incorrectHeaderReason = "Incorrect X-CocoaHub-Secret header."
         static let noSecretReason = "No $SECRET set on environment."
     }
@@ -42,14 +41,9 @@ extension SecretMiddleware: Middleware {
 extension SecretMiddleware: ServiceType {
     
     static func makeService(for container: Container) throws -> SecretMiddleware {
-        switch container.environment {
-//        case .development:
-//           return SecretMiddleware(with: Constant.nonProductionSecret)            
-        default:
-            guard let secret = Environment.secret else {
-                throw Abort(.internalServerError, reason: Constant.noSecretReason)
-            }
-            return SecretMiddleware(with: secret)
+        guard let secret = Environment.secret else {
+            throw Abort(.internalServerError, reason: Constant.noSecretReason)
         }
+        return SecretMiddleware(with: secret)
     }
 }
