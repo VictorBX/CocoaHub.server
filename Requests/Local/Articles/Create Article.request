@@ -7,8 +7,9 @@
 	<key>bodyString</key>
 	<string>{
 	"title": "MVC vs MVVM",
-	"edition": 1,
+	"edition": 2,
 	"tags": ["ios"],
+	"uri": "",
   	"author": { 
 		"name": "Pedro Carrasco", 
 		"uri": "https://twitter.com/pedrommcarrasco" 

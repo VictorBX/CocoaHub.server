@@ -43,13 +43,16 @@ extension ArticlesController {
             .paginate(for: req)
     }
     
-    func articles(_ req: Request) throws -> Future<[Article]> {
+    func articles(_ req: Request) throws -> Future<ArticlesEditionResponse> {
         return try req.parameters
             .next(ArticlesEdition.self)
             .flatMap(to: [Article].self) {
                 try $0.articles.query(on: req)
                     .sort(\.title)
                     .all()
+            }
+            .map(to: ArticlesEditionResponse.self) {
+                return ArticlesEditionResponse(articles: $0)
         }
     }
 }
