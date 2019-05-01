@@ -24,3 +24,24 @@ final class Contributor {
 
 // MARK: - Content
 extension Contributor: Content {}
+
+// MARK: - Comparable
+extension Contributor: Comparable {
+    
+    static func < (lhs: Contributor, rhs: Contributor) -> Bool {
+        return lhs.name < rhs.name
+    }
+    
+    static func == (lhs: Contributor, rhs: Contributor) -> Bool {
+        return lhs.name == rhs.name
+    }
+}
+
+// MARK: - Comparable
+extension Contributor: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(uri)
+    }
+}

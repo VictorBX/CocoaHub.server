@@ -19,7 +19,7 @@ final class ArticlesEditionResponse {
     // MARK: Init
     init(articles: [Article]) {
         self.articles = articles
-        self.curators = articles.map { return $0.curator }
+        self.curators = Set(articles.map { return $0.curator }).sorted()
     }
 }
 
