@@ -14,7 +14,7 @@ final class ArticlesEditionResponse {
     
     // MARK: Properties
     let articles: [Article]
-    let curators: [Contributor]
+    let curators: [Person]
     
     // MARK: Init
     init(articles: [Article]) {

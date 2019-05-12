@@ -19,10 +19,10 @@ final class New {
     var date: Date
     var uri: String
     var tags: [String]
-    var curator: Contributor
+    var curator: Person
     
     // MARK: Init
-    init(title: String, description: String, date: Date, uri: String, tags: [String], curator: Contributor) {
+    init(title: String, description: String, date: Date, uri: String, tags: [String], curator: Person) {
         self.title = title
         self.description = description
         self.date = date

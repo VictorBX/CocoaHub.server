@@ -2,46 +2,52 @@
 //  Contributor.swift
 //  App
 //
-//  Created by Pedro Carrasco on 14/04/2019.
+//  Created by Pedro Carrasco on 12/05/2019.
 //
 
 import Vapor
 import FluentMySQL
+import Pagination
 
 // MARK: - Contributor
 final class Contributor {
     
     // MARK: Properties
-    let name: String
-    let uri: String
+    var id: Int?
+    var name: String
+    var url: String
     
     // MARK: Init
-    init(name: String, uri: String) {
+    init(name: String, url: String) {
         self.name = name
-        self.uri = uri
+        self.url = url
     }
 }
+
+// MARK: - MySQLModel
+extension Contributor: MySQLModel {}
 
 // MARK: - Content
 extension Contributor: Content {}
 
-// MARK: - Comparable
-extension Contributor: Comparable {
+// MARK: - Migration
+extension Contributor: Migration {}
+
+// MARK: - Parameter
+extension Contributor: Parameter {}
+
+// MARK: - Paginatable
+extension Contributor: Paginatable {}
+
+// MARK: - Update
+extension Contributor {
     
-    static func < (lhs: Contributor, rhs: Contributor) -> Bool {
-        return lhs.name < rhs.name
-    }
-    
-    static func == (lhs: Contributor, rhs: Contributor) -> Bool {
-        return lhs.name == rhs.name
+    @discardableResult
+    func update(with contributor: Contributor) -> Contributor {
+        name = contributor.name
+        url = contributor.url
+
+        return self
     }
 }
 
-// MARK: - Comparable
-extension Contributor: Hashable {
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(uri)
-    }
-}

@@ -16,12 +16,12 @@ final class Article {
     var title: String
     var tags: [String]
     var uri: String
-    var author: Contributor
-    var curator: Contributor
+    var author: Person
+    var curator: Person
     var edition: ArticlesEdition.ID
     
     // MARK: Init
-    init(title: String, tags: [String], uri: String, author: Contributor, curator: Contributor, edition: ArticlesEdition.ID) {
+    init(title: String, tags: [String], uri: String, author: Person, curator: Person, edition: ArticlesEdition.ID) {
         self.title = title
         self.tags = Tags.allowedTags(from: tags, of: .article)
         self.uri = uri

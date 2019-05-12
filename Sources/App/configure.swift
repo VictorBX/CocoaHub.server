@@ -42,6 +42,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     migrations.add(model: New.self, database: .mysql)
     migrations.add(model: ArticlesEdition.self, database: .mysql)
     migrations.add(model: Article.self, database: .mysql)
+    migrations.add(model: Contributor.self, database: .mysql)
     services.register(migrations)
     
     // preferences

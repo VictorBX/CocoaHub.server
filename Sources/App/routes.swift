@@ -10,4 +10,7 @@ public func routes(_ router: Router) throws {
     
     let articlesController = ArticlesController()
     try router.register(collection: articlesController)
+    
+    let contributorsController = ContributorsController()
+    try router.register(collection: contributorsController)
 }
