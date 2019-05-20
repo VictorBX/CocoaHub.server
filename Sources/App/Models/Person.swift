@@ -13,12 +13,12 @@ final class Person {
     
     // MARK: Properties
     let name: String
-    let uri: String
+    let url: String
     
     // MARK: Init
-    init(name: String, uri: String) {
+    init(name: String, url: String) {
         self.name = name
-        self.uri = uri
+        self.url = url
     }
 }
 
@@ -42,6 +42,6 @@ extension Person: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
-        hasher.combine(uri)
+        hasher.combine(url)
     }
 }

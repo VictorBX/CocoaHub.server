@@ -17,18 +17,18 @@ final class Event {
     var name: String
     var logo: String
     var tags: [String]
-    var uri: String
+    var url: String
     var country: String
     var city: String
     var startDate: Date
     var endDate: Date
     
     // MARK: Init
-    init(name: String, logo: String, tags: [String], uri: String, country: String, city: String, startDate: Date, endDate: Date) {
+    init(name: String, logo: String, tags: [String], url: String, country: String, city: String, startDate: Date, endDate: Date) {
         self.name = name
         self.logo = logo
         self.tags = Tags.allowedTags(from: tags, of: .event)
-        self.uri = uri
+        self.url = url
         self.country = country
         self.city = city
         self.startDate = startDate
@@ -59,7 +59,7 @@ extension Event {
         name = event.name
         logo = event.logo
         tags = event.tags
-        uri = event.uri
+        url = event.url
         country = event.country
         city = event.city
         startDate = event.startDate

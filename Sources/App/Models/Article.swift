@@ -15,16 +15,16 @@ final class Article {
     var id: Int?
     var title: String
     var tags: [String]
-    var uri: String
+    var url: String
     var author: Person
     var curator: Person
     var edition: ArticlesEdition.ID
     
     // MARK: Init
-    init(title: String, tags: [String], uri: String, author: Person, curator: Person, edition: ArticlesEdition.ID) {
+    init(title: String, tags: [String], url: String, author: Person, curator: Person, edition: ArticlesEdition.ID) {
         self.title = title
         self.tags = Tags.allowedTags(from: tags, of: .article)
-        self.uri = uri
+        self.url = url
         self.edition = edition
         self.author = author
         self.curator = curator
@@ -58,7 +58,7 @@ extension Article {
     func update(with article: Article) -> Article {
         title = article.title
         tags = article.tags
-        uri = article.uri
+        url = article.url
         edition = article.edition
         curator = article.curator
         

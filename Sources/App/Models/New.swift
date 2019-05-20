@@ -17,16 +17,16 @@ final class New {
     var title: String
     var description: String
     var date: Date
-    var uri: String
+    var url: String
     var tags: [String]
     var curator: Person
     
     // MARK: Init
-    init(title: String, description: String, date: Date, uri: String, tags: [String], curator: Person) {
+    init(title: String, description: String, date: Date, url: String, tags: [String], curator: Person) {
         self.title = title
         self.description = description
         self.date = date
-        self.uri = uri
+        self.url = url
         self.tags = Tags.allowedTags(from: tags, of: .new)
         self.curator = curator
     }
@@ -55,7 +55,7 @@ extension New {
         title = new.title
         description = new.description
         date = new.date
-        uri = new.uri
+        url = new.url
         tags = new.tags
         curator = new.curator
         
