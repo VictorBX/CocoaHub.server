@@ -69,13 +69,14 @@ private extension Tags {
         static let serverSide = "serverSide"
         static let business = "business"
         static let career = "career"
+        static let design = "design"
         static let dx = "dx"
         static let ios = "ios"
         static let language = "language"
         static let macos = "macos"
         static let testing = "testing"
         static let tipsAndTricks = "tipsAndTricks"
-        static let uiux = "uiux"
+        static let ui = "ui"
         static let tvos = "tvos"
         static let watchos = "watchos"
     }
@@ -85,13 +86,14 @@ private extension Tags {
             || tag == Article.serverSide
             || tag == Article.business
             || tag == Article.career
+            || tag == Article.design
             || tag == Article.dx
             || tag == Article.ios
             || tag == Article.language
             || tag == Article.macos
             || tag == Article.testing
             || tag == Article.tipsAndTricks
-            || tag == Article.uiux
+            || tag == Article.ui
             || tag == Article.tvos
             || tag == Article.watchos
     }
