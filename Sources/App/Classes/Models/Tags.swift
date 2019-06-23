@@ -18,19 +18,14 @@ enum TagType {
 struct Tags {
     
     static func allowedTags(from tags: [String], of type: TagType) -> [String] {
-        
-        let filteredTags: [String]
-        
         switch type {
         case .event:
-            filteredTags = tags.filter(isEventTag)
+            return tags.filter(isEventTag)
         case .new:
-            filteredTags = tags.filter(isNewTag)
+            return tags.filter(isNewTag)
         case .article:
-            filteredTags = tags.filter(isArticleTag)
+            return tags.filter(isArticleTag)
         }
-        
-        return Set(filteredTags).sorted()
     }
 }
 

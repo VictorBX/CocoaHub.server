@@ -48,11 +48,8 @@ extension ArticlesController {
             .next(ArticlesEdition.self)
             .flatMap(to: [Article].self) {
                 try $0.articles.query(on: req)
-                    .sort(\.tags[0], .ascending)
-//                    .sorted
-//                    .sort(MySQLOrderBy.init)
-//                    .sort(\.tags.first)
-//                    .sort(\.title)
+                    .sort(\.tags.first)
+                    .sort(\.title)
                     .all()
             }
             .map(to: ArticlesEditionResponse.self) {
