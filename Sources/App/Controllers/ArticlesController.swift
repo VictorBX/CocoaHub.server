@@ -49,7 +49,6 @@ extension ArticlesController {
             .flatMap(to: [Article].self) {
                 try $0.articles.query(on: req)
                     .sort(\.tags.first)
-                    .sort(\.tags.second)
                     .sort(\.title)
                     .all()
             }
