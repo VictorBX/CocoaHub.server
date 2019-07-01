@@ -16,15 +16,17 @@ struct ArticlesController: RouteCollection {
     func boot(router: Router) throws {
         let editionsRoutes = router.grouped("articlesEditions")
         editionsRoutes.get(use: editions)
-        editionsRoutes.get(ArticlesEdition.parameter, "articles", use: articles)
         
         editionsRoutes.group(SecretMiddleware.self) {
             $0.post(ArticlesEdition.self, use: createEdition)
             $0.put(ArticlesEdition.parameter, use: updateEdition)
             $0.delete(ArticlesEdition.parameter, use: deleteEdition)
         }
+
+        let articlesRoutes = router.grouped("articles")
+        articlesRoutes.get(Article.parameter, use: article)
         
-        router.grouped("articles").group(SecretMiddleware.self) {
+        articlesRoutes.group(SecretMiddleware.self) {
             $0.post(Article.self, use: createArticle)
             $0.put(Article.parameter, use: updateArticle)
             $0.delete(Article.parameter, use: deleteArticle)
@@ -54,6 +56,10 @@ extension ArticlesController {
             .map(to: ArticlesEditionResponse.self) {
                 return ArticlesEditionResponse(articles: $0)
         }
+    }
+
+    func article(_ req: Request) throws -> Future<Article> {
+        return try req.parameters.next(Article.self)
     }
 }
 

@@ -16,6 +16,7 @@ struct ContributorsController: RouteCollection {
     func boot(router: Router) throws {
         let routes = router.grouped("contributors")
         routes.get(use: contributors)
+        routes.get(Contributor.parameter, use: contributor)
         
         routes.group(SecretMiddleware.self) {
             $0.post(Contributor.self, use: createContributor)
@@ -32,6 +33,10 @@ extension ContributorsController {
         return try Contributor.query(on: req)
             .sort(\.name)
             .paginate(for: req)
+    }
+
+    func contributor(_ req: Request) throws -> Future<Contributor> {
+        return try req.parameters.next(Contributor.self)
     }
 }
 

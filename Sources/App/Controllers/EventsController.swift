@@ -16,6 +16,7 @@ struct EventsController: RouteCollection {
     func boot(router: Router) throws {
         let routes = router.grouped("events")
         routes.get(use: events)
+        routes.get(Event.parameter, use: event)
         
         routes.group(SecretMiddleware.self) {
             $0.post(Event.self, use: createEvent)
@@ -34,6 +35,10 @@ extension EventsController {
             .filter(\.endDate >= today)
             .sort(\.startDate)
             .paginate(for: req)
+    }
+
+    func event(_ req: Request) throws -> Future<Event> {
+        return try req.parameters.next(Event.self)
     }
 }
 
