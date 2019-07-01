@@ -16,7 +16,7 @@ struct ArticlesController: RouteCollection {
     func boot(router: Router) throws {
         let editionsRoutes = router.grouped("articlesEditions")
         editionsRoutes.get(use: editions)
-        
+        editionsRoutes.get(ArticlesEdition.parameter, "articles", use: articles)
         editionsRoutes.group(SecretMiddleware.self) {
             $0.post(ArticlesEdition.self, use: createEdition)
             $0.put(ArticlesEdition.parameter, use: updateEdition)
@@ -25,7 +25,6 @@ struct ArticlesController: RouteCollection {
 
         let articlesRoutes = router.grouped("articles")
         articlesRoutes.get(Article.parameter, use: article)
-        
         articlesRoutes.group(SecretMiddleware.self) {
             $0.post(Article.self, use: createArticle)
             $0.put(Article.parameter, use: updateArticle)
