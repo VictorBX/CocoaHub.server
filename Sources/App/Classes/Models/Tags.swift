@@ -63,10 +63,10 @@ private extension Tags {
         case storage
         case testing
         case tipsAndTricks
+        case tooling
         case ui
         case web
         case workflow
-        case xcode
     }
     
     enum Event: String {
