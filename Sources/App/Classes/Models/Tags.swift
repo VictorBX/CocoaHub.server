@@ -20,76 +20,57 @@ struct Tags {
     static func allowedTags(from tags: [String], of type: TagType) -> [String] {
         switch type {
         case .event:
-            return tags.filter(isEventTag)
+            return tags.compactMap {
+                guard let event = Event(rawValue: $0) else { return nil }
+                return event.rawValue
+            }
         case .new:
-            return tags.filter(isNewTag)
+            return tags.compactMap {
+                guard let new = New(rawValue: $0) else { return nil }
+                return new.rawValue
+            }
         case .article:
-            return tags.filter(isArticleTag)
+            return tags.compactMap {
+                guard let article = Article(rawValue: $0) else { return nil }
+                return article.rawValue
+            }
         }
     }
 }
 
-// MARK: - Event Tags
+// MARK: - Tags Definition
 private extension Tags {
     
-    enum Event {
-        static let callForPapers = "callForPapers"
-        static let tickets = "tickets"
+    enum New: String {
+        case apple
+        case community
+        case evolution
+        case newsletter
+        case podcast
+        case press
     }
     
-    static func isEventTag(_ tag: String) -> Bool {
-        return tag == Event.callForPapers || tag == Event.tickets
-    }
-}
-
-// MARK: - New Tags
-private extension Tags {
-    
-    enum New {
-        static let apple = "apple"
-        static let evolution = "evolution"
-        static let community = "community"
-    }
-    
-    static func isNewTag(_ tag: String) -> Bool {
-        return tag == New.apple || tag == New.community || tag == New.apple
-    }
-}
-
-// MARK: - Article Tags
-private extension Tags {
-    
-    enum Article {
-        static let architecture = "architecture"
-        static let serverSide = "serverSide"
-        static let business = "business"
-        static let career = "career"
-        static let design = "design"
-        static let dx = "dx"
-        static let ios = "ios"
-        static let language = "language"
-        static let macos = "macos"
-        static let testing = "testing"
-        static let tipsAndTricks = "tipsAndTricks"
-        static let ui = "ui"
-        static let tvos = "tvos"
-        static let watchos = "watchos"
+    enum Article: String {
+        case architecture
+        case server
+        case business
+        case career
+        case debugging
+        case design
+        case gaming
+        case language
+        case other
+        case storage
+        case testing
+        case tipsAndTricks
+        case ui
+        case web
+        case workflow
+        case xcode
     }
     
-    static func isArticleTag(_ tag: String) -> Bool {
-        return tag == Article.architecture
-            || tag == Article.serverSide
-            || tag == Article.business
-            || tag == Article.career
-            || tag == Article.design
-            || tag == Article.dx
-            || tag == Article.ios
-            || tag == Article.language
-            || tag == Article.macos
-            || tag == Article.testing
-            || tag == Article.tipsAndTricks
-            || tag == Article.ui
-            || tag == Article.tvos
-            || tag == Article.watchos
+    enum Event: String {
+        case callForPapers
+        case tickets
     }
 }
