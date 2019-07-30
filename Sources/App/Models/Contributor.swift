@@ -50,4 +50,3 @@ extension Contributor {
         return self
     }
 }
-

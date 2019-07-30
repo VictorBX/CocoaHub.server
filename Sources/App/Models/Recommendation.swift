@@ -12,10 +12,11 @@ import FluentMySQL
 final class Recommendation {
     
     // MARK: Properties
-    let logo: String
-    let name: String
-    let description: String
-    let url: String
+    var id: Int?
+    var logo: String
+    var name: String
+    var description: String
+    var url: String
     
     // MARK: Init
     init(logo: String, name: String, description: String, url: String) {
@@ -26,5 +27,28 @@ final class Recommendation {
     }
 }
 
+// MARK: - MySQLModel
+extension Recommendation: MySQLModel {}
+
 // MARK: - Content
 extension Recommendation: Content {}
+
+// MARK: - Migration
+extension Recommendation: Migration {}
+
+// MARK: - Parameter
+extension Recommendation: Parameter {}
+
+// MARK: - Update
+extension Recommendation {
+    
+    @discardableResult
+    func update(with recommendation: Recommendation) -> Recommendation {
+        logo = recommendation.logo
+        name = recommendation.name
+        description = recommendation.description
+        url = recommendation.url
+        
+        return self
+    }
+}

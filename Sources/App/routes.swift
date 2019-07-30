@@ -2,7 +2,7 @@ import Vapor
 
 // MARK: - Routes
 public func routes(_ router: Router) throws {
-    let controllers = [
+    let controllers: [RouteCollection] = [
         EventsController(),
         NewsController(),
         ArticlesController(),
@@ -10,7 +10,7 @@ public func routes(_ router: Router) throws {
         RecommendationsController()
     ]
 
-    controllers.forEach {
+    try controllers.forEach {
         try router.register(collection: $0)
     }
 }

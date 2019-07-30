@@ -28,10 +28,10 @@ struct RecommendationsController: RouteCollection {
 // MARK: - GET
 extension RecommendationsController {
     
-    func recommendations(_ req: Request) throws -> Future<[Recommendation]> {
-        return try Recommendation.query(on: req)
+    func recommendations(_ req: Request) -> Future<[Recommendation]> {
+        return Recommendation.query(on: req)
             .sort(\.name)
-            .paginate(for: req)
+            .all()
     }
 }
 
