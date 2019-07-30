@@ -22,7 +22,7 @@ struct ArticlesController: RouteCollection {
             $0.put(ArticlesEdition.parameter, use: updateEdition)
             $0.delete(ArticlesEdition.parameter, use: deleteEdition)
         }
-
+        
         let articlesRoutes = router.grouped("articles")
         articlesRoutes.get(Article.parameter, use: article)
         articlesRoutes.group(SecretMiddleware.self) {
@@ -45,18 +45,24 @@ extension ArticlesController {
     }
     
     func articles(_ req: Request) throws -> Future<ArticlesEditionResponse> {
-        return try req.parameters
+        let edition = try req
+            .parameters
             .next(ArticlesEdition.self)
+        
+        let articles = edition
             .flatMap(to: [Article].self) {
                 try $0.articles.query(on: req)
                     .sort(\.title)
                     .all()
-            }
-            .map(to: ArticlesEditionResponse.self) {
-                return ArticlesEditionResponse(articles: $0)
+        }
+        
+        return edition
+            .and(articles)
+            .map(to: ArticlesEditionResponse.self) { edition, articles in
+                return ArticlesEditionResponse(edition: edition, articles: articles)
         }
     }
-
+    
     func article(_ req: Request) throws -> Future<Article> {
         return try req.parameters.next(Article.self)
     }

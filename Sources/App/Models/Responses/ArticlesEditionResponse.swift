@@ -13,11 +13,13 @@ import Foundation
 final class ArticlesEditionResponse {
     
     // MARK: Properties
+    let title: String
     let articles: [Article]
     let curators: [Person]
     
     // MARK: Init
-    init(articles: [Article]) {
+    init(edition: ArticlesEdition, articles: [Article]) {
+        self.title = edition.title
         self.articles = articles
         self.curators = Set(articles.map { return $0.curator }).sorted()
     }
