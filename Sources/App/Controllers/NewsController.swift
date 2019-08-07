@@ -19,7 +19,7 @@ struct NewsController: RouteCollection {
         routes.get(New.parameter, use: new)
         
         routes.group(SecretMiddleware.self) {
-            $0.post(New.self, use: createNew)
+            $0.post(NewDefault.self, use: createNew)
             $0.put(New.parameter, use: updateNew)
             $0.delete(New.parameter, use: deleteNew)
         }
@@ -34,7 +34,7 @@ extension NewsController {
             .sort(\.date, .descending)
             .paginate(for: req)
     }
-
+    
     func new(_ req: Request) throws -> Future<New> {
         return try req.parameters.next(New.self)
     }
@@ -43,8 +43,9 @@ extension NewsController {
 // MARK: - POST
 extension NewsController {
     
-    func createNew(_ req: Request, data: New) throws -> Future<New> {
-        return data.save(on: req)
+    func createNew(_ req: Request, data: NewDefault) throws -> Future<New> {
+        let new = New(title: data.title, description: data.description, date: Date(), url: data.url, tags: data.tags, curator: data.curator)
+        return new.create(on: req)
     }
 }
 
@@ -52,7 +53,7 @@ extension NewsController {
 extension NewsController {
     
     func updateNew(_ req: Request) throws -> Future<New> {
-        return try flatMap(to: New.self, req.parameters.next(New.self), req.content.decode(New.self)) {
+        return try flatMap(to: New.self, req.parameters.next(New.self), req.content.decode(NewDefault.self)) {
             return $0.update(with: $1).save(on: req)
         }
     }

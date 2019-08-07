@@ -51,10 +51,9 @@ extension New: Paginatable {}
 extension New {
     
     @discardableResult
-    func update(with new: New) -> New {
+    func update(with new: NewDefault) -> New {
         title = new.title
         description = new.description
-        date = new.date
         url = new.url
         tags = new.tags
         curator = new.curator
