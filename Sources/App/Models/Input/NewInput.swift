@@ -1,5 +1,5 @@
 //
-//  NewDefault.swift
+//  NewInput.swift
 //  App
 //
 //  Created by Pedro Carrasco on 07/08/2019.
@@ -9,8 +9,8 @@ import Vapor
 import FluentMySQL
 import Pagination
 
-// MARK: - NewDefault
-final class NewDefault {
+// MARK: - NewInput
+final class NewInput {
     
     // MARK: Properties
     let title: String
@@ -30,4 +30,4 @@ final class NewDefault {
 }
 
 // MARK: - Content
-extension NewDefault: Content {}
+extension NewInput: Content {}

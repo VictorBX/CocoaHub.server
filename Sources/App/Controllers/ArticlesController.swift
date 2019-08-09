@@ -44,7 +44,7 @@ extension ArticlesController {
             .paginate(for: req)
     }
     
-    func articles(_ req: Request) throws -> Future<ArticlesEditionResponse> {
+    func articles(_ req: Request) throws -> Future<EditionDetailsOutput> {
         let edition = try req
             .parameters
             .next(ArticlesEdition.self)
@@ -58,8 +58,8 @@ extension ArticlesController {
         
         return edition
             .and(articles)
-            .map(to: ArticlesEditionResponse.self) { edition, articles in
-                return ArticlesEditionResponse(edition: edition, articles: articles)
+            .map(to: EditionDetailsOutput.self) { edition, articles in
+                return EditionDetailsOutput(edition: edition, articles: articles)
         }
     }
     

@@ -1,16 +1,15 @@
 //
-//  ArticlesEditionResponse.swift
+//  EditionDetails.swift
 //  App
 //
 //  Created by Pedro Carrasco on 30/04/2019.
 //
 
 import Vapor
-import FluentMySQL
 import Foundation
 
-// MARK: - Contributor
-final class ArticlesEditionResponse {
+// MARK: - EditionDetailsOutput
+final class EditionDetailsOutput {
     
     // MARK: Properties
     let title: String
@@ -28,4 +27,4 @@ final class ArticlesEditionResponse {
 }
 
 // MARK: - Content
-extension ArticlesEditionResponse: Content {}
+extension EditionDetailsOutput: Content {}
